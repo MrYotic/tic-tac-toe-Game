@@ -1,26 +1,26 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 namespace tic_tac_toe{
     public partial class Form1 : Form{
         public Form1(){
             InitializeComponent();
-            DrawingPanelBoxes();
-            variotes = new int[8, 3] { { 0, 1, 2 }, { 3, 4, 5 }, { 6, 7, 8 }, { 0, 3, 6 }, { 1, 4, 7 }, { 2, 5, 8 }, { 0, 4, 8 }, { 6, 4, 2 } };}
+            DrawingPanelBoxes();}
         PictureBox[] _pic = new PictureBox[9];
-        private void DrawingPanelBoxes(){
+        bool state = true; //true - X ; false - О
+        bool[,] states = new bool[9, 2];// занято / не занято || крестик / нолик
+        int[,] variotes = new int[8, 3] { { 0, 1, 2 }, { 3, 4, 5 }, { 6, 7, 8 }, { 0, 3, 6 }, { 1, 4, 7 }, { 2, 5, 8 }, { 0, 4, 8 }, { 6, 4, 2 } };
+        private void DrawingPanelBoxes()
+        {
             for (int i = 0; i < _pic.Length; i++){
                 _pic[i] = new PictureBox();
                 _pic[i].BackColor = Color.White;
                 _pic[i].Size = new Size(100, 100);
-                _pic[i].Location = new Point( i / 3 * 100, i % 3 * 100);
+                _pic[i].Location = new Point(i / 3 * 100, i % 3 * 100);
                 _pic[i].TabIndex = 1000 + i;
                 _pic[i].Paint += panels_Paint;
                 _pic[i].Click += ClickPanel;}
             panel2.Controls.AddRange(_pic);}
-        bool state = true; //true - X ; false - О
-        bool[,] states = new bool[9, 2];// занято / не занято || крестик / нолик
         private void ClickPanel(object sender, EventArgs e){
             if (!states[((PictureBox)sender).TabIndex - 1000, 0]){
                 states[((PictureBox)sender).TabIndex - 1000 , 0] = true;
@@ -30,9 +30,8 @@ namespace tic_tac_toe{
                 CheckWin(state);
                 state = !state;
                 label1.Text = state == true ? "Сейчас ходит: Крестик" : "Сейчас ходит: Нолик";}}
-        int[,] variotes = new int[8, 3];
         private void CheckWin(bool state2){
-            if (int.Parse(label2.Text[label2.Text.IndexOf("x: ") + 3].ToString()) > 8 || int.Parse(label2.Text[label2.Text.IndexOf("o: ") + 3].ToString()) > 8) Process.GetCurrentProcess().Kill();
+            if (int.Parse(label2.Text[label2.Text.IndexOf("x: ") + 3].ToString()) > 8 || int.Parse(label2.Text[label2.Text.IndexOf("o: ") + 3].ToString()) > 8) this.Close();
             for (int i = 0; i < variotes.Length / 3; i++)
                 if (states[variotes[i, 0], 0] && states[variotes[i, 0], 1] == state2 && states[variotes[i, 1], 0] && states[variotes[i, 1], 1] == state2 && states[variotes[i, 2], 0] && states[variotes[i, 2], 1] == state2){
                     label2.Text = state2 == true ? "Счёт: x: " + (int.Parse(label2.Text[label2.Text.IndexOf("x: ") + 3].ToString())+1) + " / o: " + label2.Text[label2.Text.IndexOf("o: ") + 3] : "Счёт: x: " + label2.Text[label2.Text.IndexOf("x: ") + 3] + " / o: " + (int.Parse(label2.Text[label2.Text.IndexOf("o: ") + 3].ToString()) + 1);
