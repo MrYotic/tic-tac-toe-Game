@@ -60,7 +60,7 @@ namespace tic_tac_toe
         /// Требуемый метод для поддержки конструктора — не изменяйте 
         /// содержимое этого метода с помощью редактора кода.
         /// </summary>
-        private void InitializeComponent()
+        public void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -139,10 +139,26 @@ namespace tic_tac_toe
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.MouseDown += Controls_MouseDown;
+            //
+            //_pic
+            //
+            for (int i = 0; i < _pic.Length; i++)
+            {
+                _pic[i] = new PictureBox();
+                _pic[i].BackColor = Color.White;
+                _pic[i].Size = new Size(100, 100);
+                _pic[i].Location = new Point(i / 3 * 100, i % 3 * 100);
+                _pic[i].TabIndex = 1000 + i;
+                _pic[i].Image = new Bitmap(100, 100);
+                _pic[i].Paint += panels_Paint;
+                _pic[i].Click += ClickPanel;
+            }
+            panel2.Controls.AddRange(_pic);
         }
 
         #endregion
 
+        private PictureBox[] _pic = new PictureBox[9];
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel2;
