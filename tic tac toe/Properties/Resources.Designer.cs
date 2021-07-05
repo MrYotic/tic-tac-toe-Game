@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace tic_tac_toe.Properties
+namespace a.Properties
 {
 
 
