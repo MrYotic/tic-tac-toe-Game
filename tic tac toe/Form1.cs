@@ -1,6 +1,5 @@
-﻿namespace a{
-    public partial class aa : System.Windows.Forms.Form
-    {
+namespace a{
+    public partial class aa : System.Windows.Forms.Form{
         public aa() { InitializeComponent(); }    
         bool a1 = true;
         bool[,] aaa = new bool[9, 2];
