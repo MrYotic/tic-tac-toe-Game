@@ -4,8 +4,7 @@ namespace a{
         bool[,] aaa = new bool[9, 2], a1 = new bool[1, 1]{new bool[1]{true}};
         private void aa1(object a1a, System.EventArgs e){
             if (aaa[((System.Windows.Forms.PictureBox)a1a).TabIndex - 1000, 0] == false){
-                aaa[((System.Windows.Forms.PictureBox)a1a).TabIndex - 1000 , 0] = true;
-                aaa[((System.Windows.Forms.PictureBox)a1a).TabIndex - 1000 , 1] = a1[0,0];
+                aaa[((System.Windows.Forms.PictureBox)a1a).TabIndex - 1000 , 0] = aaa[((System.Windows.Forms.PictureBox)a1a).TabIndex - 1000 , 1] = true;
                 if (a1[0,0]) a11a[((System.Windows.Forms.PictureBox)a1a).TabIndex - 1000].Image = a111(((System.Windows.Forms.PictureBox)a1a).TabIndex - 1000, (System.Drawing.Bitmap)a11a[((System.Windows.Forms.PictureBox)a1a).TabIndex - 1000].Image);
                 else a11a[((System.Windows.Forms.PictureBox)a1a).TabIndex - 1000].CreateGraphics().DrawEllipse(new System.Drawing.Pen(System.Drawing.Brushes.Silver, 1), 10, 10, 80, 80);
                 if (int.Parse(a11.Text[a11.Text.IndexOf("x: ") + 3].ToString()) > 8 || int.Parse(a11.Text[a11.Text.IndexOf("o: ") + 3].ToString()) > 8) this.Close();
